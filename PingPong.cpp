@@ -1,25 +1,25 @@
-// PingPong.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
 
 #include "pch.h"
 #include <iostream>
 
 int main()
 {
-	window cuaso;
-	cuaso.drawPlayWindow();
-	//cBall ball;
 	
-	//cPaddle thanh;
-	//thanh.createPaddle();
+	window cuaSo;
+	cuaSo.playGame();
+	/*while (1)
+	{
+		if (_kbhit())
+		{
+			char ch = _getch();
+			if (ch ==-32)
+			{
+				ch = _getch();
+			}
 
-	//cPaddle thanh;
-	//.createPaddle();
-	/*cPaddle1 t1;
-	t1.createPaddle();
-	ball.createBall();
-	cPaddle2 t2;
-	t2.createPaddle();*/
+			cout << "ma ascii ban vua nhap: " << (int)ch << endl;
+		}
+	}*/
 	return 0;
 }
 

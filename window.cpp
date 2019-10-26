@@ -2,14 +2,6 @@
 #include "window.h"
 
 
-window::window()
-{
-}
-
-
-window::~window()
-{
-}
 
 void window :: resizeConsole(int width, int height)
 {
@@ -21,7 +13,7 @@ void window :: resizeConsole(int width, int height)
 
 void window :: drawPlayWindow()
 {
-	resizeConsole(850, 650);
+	resizeConsole(950, 650);
 	char c;
 	gotoxy(X0, Y0);
 	c = 201;
@@ -101,4 +93,90 @@ void window :: drawPlayWindow()
 	}
 
 
+}
+
+void window ::gotoxy(int x, int y)
+{
+	static HANDLE h = NULL;
+	if (!h)
+		h = GetStdHandle(STD_OUTPUT_HANDLE);
+	COORD c = { x, y };
+	SetConsoleCursorPosition(h, c);
+}
+
+
+int window::getY0()
+{
+	return Y0;
+}
+
+
+int window::getX0()
+{
+	return X0;
+}
+
+
+int window::getWIDTH()
+{
+	return WIDTH;
+}
+
+
+int window::getHEIGHT()
+{
+	return HEIGHT;
+}
+
+
+void window::playGame()
+{
+	int oldSpeed, count = 0;
+	drawPlayWindow();
+	cBall ball;
+	bool check;
+
+	p1.createPaddle();
+	p2.createPaddle();
+	ball.createBall();
+	ball.init();
+
+	//in Speed ra man hinh
+	move::gotoxy(48, 30);
+	cout << "SPEED: " << ball.getSpeed();
+	//chay frame
+	while (1)
+	{
+		oldSpeed = ball.getSpeed();
+		check = ball.checkCollision(*this, p1, p2);
+		ball.createBall();
+		if (oldSpeed != ball.getSpeed())
+		{
+			move::gotoxy(48, 30);
+			cout << "                       ";
+			move::gotoxy(48, 30);
+			cout << "SPEED: " << ball.getSpeed();
+
+		}
+		if (check == false)
+		{
+			ball.init();
+			ball.resetSpeed();
+		}
+		Sleep(ball.getSpeed());
+		if (_kbhit())
+		{
+			char direction = _getch();
+			if (direction == 119 || direction == 115)
+			{
+				p1.Paddle_move(direction);
+			}
+			else if (direction == -32)
+			{
+				direction =_getch();
+				p2.Paddle_move(direction);
+			}
+
+		}
+	}
 }

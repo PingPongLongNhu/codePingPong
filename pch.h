@@ -12,13 +12,11 @@
 using namespace std;
 #include <windows.h>
 #include <time.h>
+#include <conio.h>
 #include "cBall.h"
 #include "move.h"
-#include "cPaddle.h"
-#include "window.h"
 #include "cPaddle1.h"
 #include "cPaddle2.h"
-
+#include "window.h"
 // TODO: add headers that you want to pre-compile here
-
 #endif //PCH_H
